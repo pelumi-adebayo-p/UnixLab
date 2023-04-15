@@ -1,0 +1,21 @@
+def caesar_cipher():
+    shift = int(input("Enter the shift amount: "))
+    message = input("Enter the message to encode: ").upper()
+    encoded_message = ""
+    block_count = 0
+    for char in message:
+        if char.isalpha():
+            # Convert to ASCII code, shift, and wrap around if needed
+            shifted_code = (ord(char) - ord('A') + shift) % 26 + ord('A')
+            encoded_message += chr(shifted_code)
+            block_count += 1
+            if block_count == 5:
+                encoded_message += " "
+                block_count = 0
+    # Print the encoded message in blocks of five letters, ten blocks per line
+    for i in range(0, len(encoded_message), 5*12):
+        print(encoded_message[i:i+5*12])
+    return
+
+if __name__ == "__main__":
+    caesar_cipher()
